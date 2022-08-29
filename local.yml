@@ -36,6 +36,7 @@
         name: npm
         state: present
         enablerepo: epel
+        disable_plugin: priorities
 
     - name: Install Forever (to run our Node.js app).
       npm:
