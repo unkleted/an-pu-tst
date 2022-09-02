@@ -20,6 +20,8 @@
       yum:
         name: "{{ php_packages }}"
         state: present
+        disable_plugin: priorities
+        enablerepo: remi-php72
       vars:
         php_packages:
           - php-fpm
@@ -34,7 +36,7 @@
 
     - name: Copy php ini configuration for drupal
       template:
-        src: php-fpm/php.ini
+        src: root/etc/php.ini
         dest: /etc/php.ini
         owner: root
         group: root
@@ -44,7 +46,7 @@
 
     - name: Copy php-fpm configuration for drupal
       template:
-        src: php-fpm/www.conf
+        src: root/php-fpm.d/www.conf
         dest: /etc/php-fpm.d/www.conf
         owner: root
         group: root
