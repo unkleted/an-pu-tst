@@ -2,9 +2,6 @@
 - hosts: all
   become: yes
 
-  vars:
-    node_apps_location: /usr/local/opt/node
-
   tasks:
     - name: Import Remi GPG key.
       rpm_key:
@@ -25,13 +22,12 @@
         enablerepo: remi-php72
       vars:
         php_packages:
-          - php-fpm
           - php-cli
-          - php-xml
-          - php-xmlrpc
-          - php-mysql
-          - php-gd
           - php-pdo
+          - php-fpm
+          - php-json
+          - php-mysqlnd
+          
       notify:
         restart php-fpm
 
