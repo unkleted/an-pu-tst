@@ -46,7 +46,7 @@
 
     - name: Copy php-fpm configuration for drupal
       template:
-        src: root/php-fpm.d/www.conf
+        src: root/etc/php-fpm.d/www.conf
         dest: /etc/php-fpm.d/www.conf
         owner: root
         group: root
