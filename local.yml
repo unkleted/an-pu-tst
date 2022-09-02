@@ -21,6 +21,7 @@
         name: "{{ php_packages }}"
         state: present
         disable_plugin: priorities
+        disablerepo: remi-safe
         enablerepo: remi-php72
       vars:
         php_packages:
