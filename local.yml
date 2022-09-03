@@ -57,8 +57,30 @@
         state: started
         enabled: yes
 
+    - name: Copy nginx configuration for drupal
+      template:
+        src: root/etc/nginx/conf.d/drupal.conf
+        dest: /etc/nginx/conf.d/drupal.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify:
+        restart nginx
+
+    - name: nginx service state
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+
   handlers:
     - name: restart php-fpm
       service:
         name: php-fpm
+        state: restarted
+    
+    - name: restart nginx
+      service:
+        name: nginx
         state: restarted
