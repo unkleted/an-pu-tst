@@ -5,6 +5,9 @@ regions:
   - us-east-1
   - us-west-2
 
+hostnames:
+  - private-dns-name
+
 keyed_groups:
   - key: tags
     prefix: tag
