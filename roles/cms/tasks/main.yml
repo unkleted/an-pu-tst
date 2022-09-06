@@ -15,7 +15,7 @@
     groups: nginx
 
 - name: Set up authorized keys
-  ansible.posiix.authorized_key:
+  ansible.posix.authorized_key:
     user: deploy
     state: present
     key: '{{ item }}'
