@@ -1,13 +1,23 @@
 ---
 - name: Install certbot and plugins
   yum:
-    name: "{{ certbot_packages }}"
-    state: present
-  vars:
-    certbot_packages:
+    name:
       - certbot
       - python-certbot-nginx
       - python2-certbot-dns-route53.noarch
+    state: present
+      
+  register: cbot_installed
+
+- name: Get and install certificate
+  shell: >
+    echo certbot -a dns-route53 -i nginx --register-unsafely-without-email --agree-tos -d {{ server_name }} > /tmp/cb.out
+  when: cbot_installed.changed
+
+- name: Enable certbot-renew timer
+  ansible.builtin.systemd:
+    name: certbot-renew.timer
+    enabled: true
 
 - name: Create deploy user
   ansible.builtin.user:
@@ -15,9 +25,9 @@
     groups: nginx
 
 - name: Set up authorized keys
-  ansible.posix.authorized_key:
+  authorized_key:
     user: deploy
     state: present
     key: '{{ item }}'
   with_file:
-    - public_keys/a
+    - public-keys/a
