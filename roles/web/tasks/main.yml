@@ -11,24 +11,21 @@
 
 - name: Install php packages
   yum:
-    name: "{{ php_packages }}"
-    state: present
-    disable_plugin: priorities
-    disablerepo: remi-safe
-    enablerepo: remi-php72
-  vars:
-    php_packages:
+    name: 
       - php-cli
       - php-pdo
       - php-fpm
       - php-json
       - php-mysqlnd
-      
+    state: present
+    disable_plugin: priorities
+    disablerepo: remi-safe
+    enablerepo: remi-php72
   notify:
     restart php-fpm
 
 - name: Copy php ini configuration for drupal
-  file:
+  copy:
     src: php.ini
     dest: /etc/php.ini
     owner: root
@@ -38,7 +35,7 @@
     restart php-fpm
 
 - name: Copy php-fpm configuration for drupal
-  file:
+  copy:
     src: www.conf
     dest: /etc/php-fpm.d/www.conf
     owner: root

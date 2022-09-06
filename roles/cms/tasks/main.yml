@@ -33,7 +33,7 @@
     - public-keys/a
 
 - name: Set up cron logging
-  file:
+  copy:
     src: 22-drupal_cron.conf
     dest: /etc/rsyslog.d/22-drupal_cron.conf
     owner: root
@@ -41,7 +41,7 @@
     mode: 0644
   
 - name: Set up cron jobs
-  file:
+  copy:
     src: nginx
     dest: /var/spool/cron/nginx
     owner: nginx
