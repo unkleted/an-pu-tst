@@ -6,7 +6,6 @@
       - python-certbot-nginx
       - python2-certbot-dns-route53.noarch
     state: present
-      
   register: cbot_installed
 
 - name: Get and install certificate
@@ -32,3 +31,20 @@
     key: '{{ item }}'
   with_file:
     - public-keys/a
+
+- name: Set up cron logging
+  file:
+    src: 22-drupal_cron.conf
+    dest: /etc/rsyslog.d/22-drupal_cron.conf
+    owner: root
+    group: root
+    mode: 0644
+  
+- name: Set up cron jobs
+  file:
+    src: nginx
+    dest: /var/spool/cron/nginx
+    owner: nginx
+    group: nginx
+    mode: 0600
+  notify: restart cron

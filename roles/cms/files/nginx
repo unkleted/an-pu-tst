@@ -1,0 +1,22 @@
+# Chef Name: drush_cron
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/aws/bin
+0 */3 * * * drush @abr cron 2>&1 | logger -t drupal_cron -p local1.info
+# Chef Name: import_tracks
+0 8 * * * drush @abr import-tracks 2>&1 | logger -t import-tracks -p local1.info
+# Chef Name: import_jockeys
+0 8 * * * drush @abr import-jockeys 2>&1 | logger -t import-jockeys -p local1.info
+# Chef Name: import_trainers
+0 8 * * * drush @abr import-trainers 2>&1 | logger -t import-trainers -p local1.info
+# Chef Name: import_owners
+0 8 * * * drush @abr import-owners 2>&1 | logger -t import-owners -p local1.info
+# Chef Name: import_horses
+0 9 * * * drush @abr import-horses 2>&1 | logger -t import-horses -p local1.info
+# Chef Name: import_stake_series
+0 10 * * * drush @abr import-stake-series 2>&1 | logger -t import-stake-series -p local1.info
+# Chef Name: import_future_races
+0 11 * * * drush @abr import-future-races 2>&1 | logger -t import-future-races -p local1.info
+# Chef Name: import_entries_results_daily
+30 11 * * * drush @abr import-entries-results 2>&1 | logger -t import-entries-results-daily -p local1.info
+# Chef Name: import_entries_results_5min
+*/5 12-23 * * * drush @abr import-entries-results --past=0 --future=0 2>&1 | logger -t import-entries-results-5min -p local1.info
+*/5 0-7 * * * drush @abr import-entries-results --past=1 --future=0 2>&1 | logger -t import-entries-results-5min -p local1.info
