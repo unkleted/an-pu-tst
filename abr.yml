@@ -7,7 +7,7 @@
   roles:
     - web
 
-  - name: Setup CMS Servers
+- name: Setup CMS Servers
   hosts: tag_Name_CfnInitStack_CMS
   become: yes
   become_user: root
