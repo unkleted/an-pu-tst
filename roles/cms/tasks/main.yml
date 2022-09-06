@@ -1,0 +1,10 @@
+---
+- name: Install certbot and plugins
+  yum:
+    name: "{{ certbot_packages }}"
+    state: present
+  vars:
+    certbot_packages:
+      - certbot
+      - python-certbot-nginx
+      - python2-certbot-dns-route53.noarch
