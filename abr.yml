@@ -1,0 +1,8 @@
+---
+- name: Setup Americas Best Racing Servers
+  hosts: all
+  become: yes
+  become_user: root
+
+  roles:
+    - web

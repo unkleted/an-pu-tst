@@ -1,0 +1,70 @@
+---
+- name: Import Remi GPG key.
+  rpm_key:
+    key: "https://rpms.remirepo.net/RPM-GPG-KEY-remi"
+    state: present
+
+- name: Install  Remi repo.
+  yum:
+    name: "https://rpms.remirepo.net/enterprise/remi-release-7.rpm"
+    state: present
+
+- name: Install php packages
+  yum:
+    name: "{{ php_packages }}"
+    state: present
+    disable_plugin: priorities
+    disablerepo: remi-safe
+    enablerepo: remi-php72
+  vars:
+    php_packages:
+      - php-cli
+      - php-pdo
+      - php-fpm
+      - php-json
+      - php-mysqlnd
+      
+  notify:
+    restart php-fpm
+
+- name: Copy php ini configuration for drupal
+  file:
+    src: php.ini
+    dest: /etc/php.ini
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    restart php-fpm
+
+- name: Copy php-fpm configuration for drupal
+  file:
+    src: www.conf
+    dest: /etc/php-fpm.d/www.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    restart php-fpm
+
+- name: php-fpm service state
+  service:
+    name: php-fpm
+    state: started
+    enabled: yes
+
+- name: Copy nginx configuration for drupal
+  template:
+    src: drupal.conf.j2
+    dest: /etc/nginx/conf.d/drupal.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    restart nginx
+
+- name: nginx service state
+  service:
+    name: nginx
+    state: started
+    enabled: yes
