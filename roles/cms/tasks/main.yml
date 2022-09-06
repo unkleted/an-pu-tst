@@ -8,3 +8,16 @@
       - certbot
       - python-certbot-nginx
       - python2-certbot-dns-route53.noarch
+
+- name: Create deploy user
+  ansible.builtin.user:
+    name: deploy
+    groups: nginx
+
+- name: Set up authorized keys
+  ansible.posiix.authorized_key:
+    user: deploy
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - public_keys/a
