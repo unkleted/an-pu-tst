@@ -1,2 +1,3 @@
 ---
 server_name: cms.tst.americasbestracing.net
+document_root: /var/www/html
