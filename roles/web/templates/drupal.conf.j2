@@ -1,6 +1,6 @@
 server {
     server_name {{ server_name }};
-    root /var/www/drupal8; ## <-- Your only path reference.
+    root {{ document_root }}; ## <-- Your only path reference.
 
     location = /favicon.ico {
         log_not_found off;
