@@ -8,7 +8,7 @@
     - web
 
 - name: Setup CMS Servers
-  hosts: tag_Name_CfnInitStack_CMS
+  hosts: tag_Name_AbrStack_abr_cms
   become: yes
   become_user: root
 
