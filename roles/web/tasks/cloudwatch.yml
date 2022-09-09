@@ -1,0 +1,16 @@
+---
+- name: Install Cloudwatch Agent
+  yum:
+    name: amazon-cloudwatch-agent
+    state: latest
+
+- name: Copy amazon-cloudwatch-agent.json
+  copy:
+    src: amazon-cloudwatch-agent.json
+    dest: /tmp/amazon-cloudwatch-agent.json
+  register: agent_config
+
+- name: Start the CloudWatch agent using the command line
+  shell: >
+    /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/tmp/amazon-cloudwatch-agent.json
+  when: agent_config.changed
