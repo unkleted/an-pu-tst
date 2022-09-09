@@ -1,4 +1,8 @@
 ---
+- name: reload bashrc
+  shell: >
+    source /etc/profile
+
 - name: restart php-fpm
   service:
     name: php-fpm
@@ -8,7 +12,3 @@
   service:
     name: nginx
     state: restarted
-
-- name: reload bashrc
-  shell: >
-    source /etc/profile
