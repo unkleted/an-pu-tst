@@ -8,3 +8,7 @@
   service:
     name: nginx
     state: restarted
+
+- name: reload bashrc
+  shell: >
+    source /etc/profile
