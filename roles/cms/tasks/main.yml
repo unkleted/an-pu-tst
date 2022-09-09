@@ -13,6 +13,13 @@
     echo certbot -a dns-route53 -i nginx --register-unsafely-without-email --agree-tos -d {{ server_name }} > /tmp/cb.out
   when: cbot_installed.changed
 
+- name: Install drush
+  yum:
+    name: drush
+    state: present
+    disable_plugin: priorities
+    enablerepo: remi-php72    
+
 - name: Enable certbot-renew timer
   ansible.builtin.systemd:
     name: certbot-renew.timer
