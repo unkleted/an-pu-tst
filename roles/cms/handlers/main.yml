@@ -3,3 +3,8 @@
   service:
     name: crond
     state: restarted
+
+- name: restart syslog
+  service:
+    name: rsyslog
+    state: restarted
