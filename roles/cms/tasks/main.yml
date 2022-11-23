@@ -31,13 +31,25 @@
     name: deploy
     groups: nginx
 
-- name: Set up authorized keys
+- name: Set up deploy authorized keys
   authorized_key:
     user: deploy
     state: present
     key: '{{ item }}'
   with_file:
-    - public-keys/a
+    - public-keys/deploy/a
+
+- name: Create dba user
+  ansible.builtin.user:
+    name: mysqldba
+    
+- name: Set up dba authorized keys
+  authorized_key:
+    user: mysqldba
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - public-keys/mysqldba/b
 
 - name: Set up cron logging
   copy:
