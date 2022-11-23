@@ -1,0 +1,2 @@
+---
+config_location: /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
