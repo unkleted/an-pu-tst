@@ -18,7 +18,12 @@
     name: drush
     state: present
     disable_plugin: priorities
-    enablerepo: remi-php72    
+    enablerepo: remi-php72
+
+- name: Install mysql client
+  yum:
+    name: mariadb
+    state: present 
 
 - name: Enable certbot-renew timer
   ansible.builtin.systemd:
