@@ -5,3 +5,4 @@ database_host: abrstack-instancec1063a87-adtqqeiai3wy.ca04hipzstem.us-west-2.rds
 database_name: abrstagedb
 aws_domain: stage-static.americasbestracing.net
 aws_bucket: abr-stage-static
+aws_region: us-east-1

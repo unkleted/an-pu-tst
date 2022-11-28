@@ -97,6 +97,7 @@ server {
         fastcgi_param DATABASE_NAME {{ database_name }};
         fastcgi_param AWS_DOMAIN {{ aws_domain }};
         fastcgi_param AWS_BUCKET {{ aws_bucket }};
+        fastcgi_param AWS_REGION {{ aws_region }};
         fastcgi_intercept_errors on;
         # PHP 5 socket location.
         #fastcgi_pass unix:/var/run/php5-fpm.sock;
