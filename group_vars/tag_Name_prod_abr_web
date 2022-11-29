@@ -1,0 +1,11 @@
+---
+server_name: www.tst.americasbestracing.net
+document_root: /var/www/html
+
+database_username: abrproduser
+database_password: "{{ lookup('aws_ssm', '/abr/prod', region='us-east-1') }}"
+database_host: abrstack-instancec1063a87-adtqqeiai3wy.ca04hipzstem.us-west-2.rds.amazonaws.com
+database_name: abrproddb
+aws_domain: prod-static.americasbestracing.net
+aws_bucket: abr-prod-static
+aws_region: us-east-1
