@@ -6,3 +6,4 @@ database_name: abrstagedb
 aws_domain: stage-static.americasbestracing.net
 aws_bucket: abr-stage-static
 aws_region: us-east-1
+log_group_name: abr-stage

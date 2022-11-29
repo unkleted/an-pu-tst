@@ -6,7 +6,7 @@
 
 - name: Copy amazon-cloudwatch-agent.json
   copy:
-    src: amazon-cloudwatch-agent.json
+    src: amazon-cloudwatch-agent.json.j2
     dest: "{{ config_location }}"
   register: agent_config
 

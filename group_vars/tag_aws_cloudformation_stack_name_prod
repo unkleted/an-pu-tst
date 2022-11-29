@@ -6,3 +6,4 @@ database_name: abrproddb
 aws_domain: prod-static.americasbestracing.net
 aws_bucket: abr-prod-static
 aws_region: us-east-1
+log_group_name: abr-prod
