@@ -1,5 +1,6 @@
 ---
 - import_tasks: cloudwatch.yml
+- import_tasks: clouddeployagent.yml
 
 - name: Import Remi GPG key.
   rpm_key:

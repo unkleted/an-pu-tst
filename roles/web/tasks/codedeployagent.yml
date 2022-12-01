@@ -1,0 +1,26 @@
+---
+- name: Install CodeDeploy Agent prereqs
+  yum:
+    name: 
+      - ruby
+      - wget
+    state: present
+
+- name: Download CodeDeploy Agent Installer
+  shell: >
+    wget --directory-prefix=/tmp https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
+    
+- name: Set execute bit on CodeDeploy Agent Installer
+  file:
+    path: /tmp/install
+    mode: u+x
+
+- name: Run CodeDeploy Agent Installer
+  shell: >
+    /tmp/install auto
+
+- name: Start CodeDeploy Agent Service
+  service:
+    name: codedeploy-agent
+    state: started
+    enabled: yes
