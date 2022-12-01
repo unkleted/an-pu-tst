@@ -8,7 +8,7 @@
 
 - name: Download CodeDeploy Agent Installer
   shell: >
-    wget --directory-prefix=/tmp https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
+    wget --directory-prefix=/tmp https://{{ bucket-name }}.s3.{{ region-identifier }}.amazonaws.com/latest/install
     
 - name: Set execute bit on CodeDeploy Agent Installer
   file:
