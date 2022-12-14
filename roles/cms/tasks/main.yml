@@ -42,7 +42,7 @@
     state: present
     key: '{{ item }}'
   with_file:
-    - public-keys/deploy/a
+    - public-keys/deploy
 
 - name: Create dba user
   ansible.builtin.user:
@@ -54,7 +54,7 @@
     state: present
     key: '{{ item }}'
   with_file:
-    - public-keys/mysqldba/b
+    - public-keys/mysqldba
 
 - name: Set up cron logging
   copy:
