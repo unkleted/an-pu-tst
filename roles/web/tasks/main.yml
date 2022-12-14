@@ -27,16 +27,6 @@
   notify:
     restart php-fpm
 
-# - name: Copy Env Variables
-#   template:
-#     src: drupaldb.sh.j2
-#     dest: /etc/profile.d/drupaldb.sh
-#     owner: root
-#     group: root
-#     mode: 0644
-#   notify:
-#     reload bashrc
-
 - name: Copy php ini configuration for drupal
   copy:
     src: php.ini

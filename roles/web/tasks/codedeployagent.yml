@@ -10,8 +10,6 @@
   ansible.builtin.get_url:
     url: https://{{ bucket_name }}.s3.{{ region_identifier }}.amazonaws.com/latest/install
     dest: /tmp/install
-  # shell: >
-  #   wget --directory-prefix=/tmp https://{{ bucket_name }}.s3.{{ region_identifier }}.amazonaws.com/latest/install
     
 - name: Set execute bit on CodeDeploy Agent Installer
   file:
